@@ -1,0 +1,1 @@
+{"uuid": "bd50195f-b9a1-42dc-9e44-a52d53843467", "children": ["548e0760-200c-4c26-a4b9-3ac4b0b3f4e2"], "befores": [{"name": "request_credit_invalid_request", "status": "passed", "start": 1785001131076, "stop": 1785001131076}], "afters": [{"name": "request_credit_invalid_request::<lambda>", "start": 1785001131473}], "start": 1785001131076, "stop": 1785001131473}
