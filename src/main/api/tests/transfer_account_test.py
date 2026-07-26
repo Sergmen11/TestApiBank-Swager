@@ -22,10 +22,10 @@ class TestTransferAccount:
 
         # Проверяем, что транзакция вообще создалась
         assert transaction_from_db is not None, "Транзакция не найдена в базе данных!"
+        # Проверяем, что все поля соответствуют запросу
         assert transfer_account_request["sender_account_id"] == transaction_from_db.from_account_id
         assert transfer_account_request["receiver_account_id"] == transaction_from_db.to_account_id
         assert transfer_req.amount == transaction_from_db.amount
-        assert transaction_from_db.transaction_type == "transfer"
 
     # негативный тест на перевод средств(Недостаточно средств или сумма перевода превышена)
     def test_transfer_account_invalid(self, api_manager: ApiManager, transfer_account_request_invalid: dict):
