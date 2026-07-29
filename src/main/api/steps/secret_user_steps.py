@@ -47,5 +47,5 @@ class SecretUserSteps(BaseSteps):
         CrudRequester(
             RequestSpecs.auth_headers(username=create_secret_user_request.username, password=create_secret_user_request.password),
             Endpoint.REPAY_CREDIT,
-            ResponseSpecs.request_not_found()
+            ResponseSpecs.unprocessable_entity()
         ).post(repay_credit_invalid_request)

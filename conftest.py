@@ -12,3 +12,4 @@ from src.main.api.fixtures.transfer_invalid_fixture import *
 from src.main.api.fixtures.request_credit_invalid_fixture import *
 from src.main.api.fixtures.repay_credit_invalid_fixture import *
 from src.main.api.fixtures.db_fixture import *
+from src.main.api.fixtures.deposit_account_invalid_fixture import *
