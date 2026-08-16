@@ -6,7 +6,6 @@ from src.main.api.models.request_credit_request import RequestCreditRequest
 from src.main.api.specs.request_specs import RequestSpecs
 from src.main.api.specs.response_specs import ResponseSpecs
 from src.main.api.steps.base_steps import BaseSteps
-from src.main.api.models.create_account_response import CreateAccountResponse
 from src.main.api.models.create_secret_user_request import CreateSecretUserRequest
 
 
