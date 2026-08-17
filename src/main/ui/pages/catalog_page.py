@@ -1,18 +1,18 @@
 from playwright.sync_api import Page
+
+from src.main.ui.pages.base_page import BasePage
 from src.main.ui.utils.constants import Urls
 
-class CatalogPage:
+class CatalogPage(BasePage):
     URL = Urls.BASE
-    def __init__(self, page: Page):
-        self.page = page
+    def __init__(self, page: Page, ):
+        super().__init__(page)
         self.product_cards = page.locator('.inventory_item')
         self.sort_select = page.locator(".product_sort_container")
         self.cart_badge = page.locator(".shopping_cart_badge")
         self.menu_button = page.locator("#react-burger-menu-btn")
         self.logout_link = page.locator("#logout_sidebar_link")
-        self.username_input = page.get_by_placeholder("Username")
-        self.password_input = page.get_by_placeholder("Password")
-        self.login_button = page.locator("#login-button")
+
 
     # навигация и логин
     def open(self):
