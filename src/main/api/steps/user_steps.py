@@ -36,11 +36,11 @@ class UserSteps(BaseSteps):
         ).post(transfer_account_request)
         return response
 
-    def deposit_account_invalid(self, deposit_account_request: DepositAccountRequest):
+    def deposit_account_invalid(self, create_user_request: CreateUserRequest, deposit_account_request: DepositAccountRequest):
         CrudRequester(
-            RequestSpecs.auth_headers(username="admin", password="123456"),
+            RequestSpecs.auth_headers(create_user_request.username, create_user_request.password),
             Endpoint.DEPOSIT_ACCOUNT,
-            ResponseSpecs.request_forbidden()
+            ResponseSpecs.request_bad()
         ).post(deposit_account_request)
 
     def transfer_account_invalid(self, create_user_request: CreateUserRequest, transfer_account_request_invalid: TransferAccountRequest):

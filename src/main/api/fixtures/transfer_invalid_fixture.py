@@ -5,6 +5,7 @@ from src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.create_user_request import CreateUserRequest
 from src.main.api.models.deposit_account_request import DepositAccountRequest
 from src.main.api.models.transfer_account_request import TransferAccountRequest
+from src.main.api.models.transfer_fixture_model_invalid import TransferFixtureModelInvalid
 
 
 @pytest.fixture
@@ -37,12 +38,13 @@ def transfer_account_request_invalid(api_manager: ApiManager):
         amount=10000.0  # сумма перевода больше баланса
     )
 
-    # ВОЗВРАЩАЕМ СЛОВАРЬ с обоими объектами
-    return {
-        "sender_request": sender_request,
-        "sender_account_id": sender_account_id,
-        "receiver_request": receiver_request,
-        "receiver_account_id": receiver_account_id,
-        "deposit_amount": deposit_request.amount,
-        "transfer_request": transfer_req,
-    }
+    # Возвращаем pydantic модель
+    return TransferFixtureModelInvalid(
+        sender_request=sender_request,
+        sender_account_id=sender_account_id,
+        receiver_request=receiver_request,
+        receiver_account_id=receiver_account_id,
+        deposit_amount=deposit_request.amount,
+        transfer_request=transfer_req,
+
+    )

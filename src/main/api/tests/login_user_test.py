@@ -9,12 +9,12 @@ class TestLoginUser:
         login_user_request = LoginUserRequest(username="admin", password="123456")
         response = api_manager.admin_steps.login_user(login_user_request)
 
-        assert login_user_request.username == response.user.username
-        assert response.user.role == "ROLE_ADMIN"
+        assert login_user_request.username == response.user.username, "Пользователь не залогинелся, ошибка"
+        assert response.user.role == "ROLE_ADMIN", "Пользователь с ролью админ не залогинелся, ошибка"
 
     def test_user_login(self, api_manager: ApiManager, create_user_request: CreateUserRequest):
 
         response = api_manager.admin_steps.login_user(create_user_request)
 
-        assert create_user_request.username == response.user.username
-        assert create_user_request.role == response.user.role
+        assert create_user_request.username == response.user.username, "Пользователь не залогинелся, ошибка"
+        assert create_user_request.role == response.user.role, "Пользователь с ролью админ не залогинелся, ошибка"
