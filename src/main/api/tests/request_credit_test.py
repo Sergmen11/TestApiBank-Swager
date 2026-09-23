@@ -17,19 +17,23 @@ class TestRequestCredit:
         response = api_manager.secret_user_steps.request_credit(create_secret_user_request, request_credit_request)
 
         # проверка срока кредита
-        assert request_credit_request.termMonths == response.termMonths
+        assert request_credit_request.termMonths == response.termMonths, "срок кредита не совпадает, ошибка"
         # проверка суммы кредита
-        assert request_credit_request.amount == response.amount
+        assert request_credit_request.amount == response.amount, "суммы кредита не совпадают, ошибка"
 
         # проверка создания кредита в базе данных
         credit_from_db = Credit.get_credit_by_id(db_session, request_credit_request.accountId)
-        # проверка создания кредита в базе данных
+        # проверка создания id кредита в базе данных
         assert credit_from_db.account_id == response.id, "кредитного Id нет в БД"
+
 
     def test_request_credit_invalid(self, db_session: Session, api_manager: ApiManager, create_secret_user_request: CreateSecretUserRequest,
                                     request_credit_invalid_request: RequestCreditRequest):
         # негативный тест на получение кредита
         response = api_manager.secret_user_steps.request_credit_invalid(create_secret_user_request, request_credit_invalid_request)
+
+        if hasattr(response, 'creditId'):
+            assert response.creditId is None, "creditId не должен создаваться при ошибке"
 
         credit_from_db = Credit.get_credit_by_id(db_session, request_credit_invalid_request.accountId)
         # проверка создания кредита в базе данных

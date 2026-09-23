@@ -1,5 +1,4 @@
 from sqlalchemy.orm import Session
-
 from src.main.api.classes.api_manager import ApiManager
 from src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.create_user_request import CreateUserRequest
@@ -17,8 +16,8 @@ class TestCreateUser:
 
         response = api_manager.admin_steps.create_user(create_user_request)
 
-        assert create_user_request.role == response.role
-        assert create_user_request.username == response.username
+        assert create_user_request.role == response.role, "Созданный пользователь не имеет роли ROLE_USER, ошибка"
+        assert create_user_request.username == response.username, "Пользователь не создался, ошибка"
 
         user_from_db = User.get_user_by_username(db_session, create_user_request.username)
         assert user_from_db.username == create_user_request.username, "Созданного пользователя нет в БД"
